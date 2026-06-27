@@ -652,8 +652,8 @@
   // SUPABASE INIT
   // ============================
   const SUPABASE_URL = "https://jdzqzrfmoxurefwqzyfu.supabase.co";
-  const SUPABASE_ANON_KEY = "sb_publishable_3qYy496BfO0xjMQ1ovK_Qg_SRB9NRRc";
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpkenF6cmZtb3h1cmVmd3F6eWZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MTA4OTQsImV4cCI6MjA5NzA4Njg5NH0.JJsMuX-H9ghgYiwjNUG-tBhV0afB9VA-E143m2v9GCI";
+  const _db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   // ============================
   // DATA
@@ -710,7 +710,7 @@
     const btn = document.querySelector('#adminLogin .btn-login');
     btn.disabled = true;
     btn.textContent = 'Checking...';
-    supabase.auth.signInWithPassword({ email, password: pw }).then(({ error }) => {
+    _db.auth.signInWithPassword({ email, password: pw }).then(({ error }) => {
       btn.disabled = false;
       btn.textContent = 'Login →';
       if (!error) {
@@ -875,13 +875,13 @@
     for (const item of uploadedPhotos) {
       const ext = (item.file.name.split('.').pop() || 'jpg').toLowerCase();
       const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-      const { error: upErr } = await supabase.storage.from('product-images').upload(path, item.file);
+      const { error: upErr } = await _db.storage.from('product-images').upload(path, item.file);
       if (upErr) { console.error(upErr); showToast('⚠️ Photo upload error: ' + upErr.message); continue; }
-      const { data } = supabase.storage.from('product-images').getPublicUrl(path);
+      const { data } = _db.storage.from('product-images').getPublicUrl(path);
       imageUrls.push(data.publicUrl);
     }
 
-    const { error } = await supabase.from('products').insert([{
+    const { error } = await _db.from('products').insert([{
       title: name,
       category: cat,
       price: parseInt(price),
@@ -1061,7 +1061,7 @@
 
   async function deleteProduct(id) {
     if (!confirm('Yeh product delete karna chahte hain?')) return;
-    const { error } = await supabase.from('products').delete().eq('id', id);
+    const { error } = await _db.from('products').delete().eq('id', id);
     if (error) {
       showToast('❌ Delete error: ' + error.message);
       return;
