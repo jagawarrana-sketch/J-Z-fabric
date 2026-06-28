@@ -401,11 +401,36 @@
     }
     .toast.show { transform: translateX(-50%) translateY(0); }
 
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .hero { padding: 60px 16px 40px; }
-      .hero-stats { gap: 20px; }
-      .section { padding: 40px 16px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none !important; }
+      .nav-logo { font-size: 1.2rem !important; }
+      .nav-admin { font-size: 0.72rem !important; padding: 5px 8px !important; }
+      .hero { padding: 65px 14px 36px; }
+      .hero h1 { font-size: 1.7rem; line-height: 1.2; }
+      .hero p { font-size: 0.88rem; }
+      .hero-stats { gap: 12px; flex-wrap: wrap; justify-content: center; }
+      .hero-btns { flex-direction: column; align-items: center; gap: 10px; }
+      .hero-btns a, .hero-btns button { width: 85%; text-align: center; justify-content: center; display: flex; }
+      .section { padding: 28px 12px; }
+      .why-wrap { padding: 28px 12px; }
+      .cat-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+      .cat-card { padding: 12px 8px; }
+      .cat-card .emoji { font-size: 1.5rem; }
+      .cat-card h4 { font-size: 0.8rem; }
+      .cat-card p { font-size: 0.7rem; }
+      .filter-bar { gap: 5px; flex-wrap: wrap; }
+      .filter-btn { font-size: 0.72rem; padding: 5px 9px; }
+      .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+      #productGrid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+      .product-carousel { height: 170px; }
+      .product-name { font-size: 0.82rem; }
+      .product-price { font-size: 0.95rem; }
+      .btn-order { font-size: 0.75rem; padding: 7px; }
+      .why-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
+      .contact-grid { grid-template-columns: 1fr !important; }
+      .admin-panel { width: 96vw !important; max-width: 96vw !important; max-height: 88vh !important; overflow-y: auto !important; }
+      h2 { font-size: 1.25rem !important; }
+      h3 { font-size: 1rem !important; }
     }
   </style>
 </head>
