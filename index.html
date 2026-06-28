@@ -413,7 +413,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Ahmed <span>Fabrics</span></div>
+  <div class="nav-logo" style="font-size:1.6rem;font-weight:900;letter-spacing:1px;background:linear-gradient(135deg,#1a472a,#52b788);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-family:Georgia,serif;">✦ Ahmed <span style="-webkit-text-fill-color:#40916c;font-style:italic;">Fabrics</span></div>
   <ul class="nav-links">
     <li><a href="#categories">Collection</a></li>
     <li><a href="#products">Shop</a></li>
@@ -539,8 +539,8 @@
     <!-- LOGIN SCREEN -->
     <div class="admin-login" id="adminLogin">
       <h4>🔒 Admin Login</h4>
-      <input type="email" id="pwEmail" placeholder="Admin email..." />
-      <input type="password" id="pwInput" placeholder="Password dalein..." onkeydown="if(event.key==='Enter')doLogin()" />
+      <input type="text" id="pwEmail" value="admin" style="display:none" />
+      <input type="password" id="pwInput" placeholder="🔑 Password likhein..." onkeydown="if(event.key==='Enter')doLogin()" />
       <button class="btn-login" onclick="doLogin()">Login →</button>
       <p style="font-size:0.75rem;color:var(--muted);margin-top:10px">Sirf authorized admin login kar sakta hai.</p>
     </div>
@@ -634,6 +634,13 @@
           </select>
         </div>
 
+        <div class="form-group" style="margin-top:12px;">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;color:#1b4332;">
+            <input type="checkbox" id="pFeatured" style="width:18px;height:18px;accent-color:#2d6a4f;" />
+            🌟 Main Page par dikhayein (Featured)
+          </label>
+          <p style="font-size:0.75rem;color:#888;margin-top:4px;">Check karein toh yeh product main page par show hoga, warna category mein jayega</p>
+        </div>
         <button class="btn-login" onclick="addProduct()">✓ Product Add Karo</button>
       </div>
 
@@ -680,6 +687,7 @@
       desc: r.description,
       badge: r.badge,
       stock: r.stock || 'available',
+      featured: r.featured || false,
       photos: r.images || []
     }));
     renderProducts();
@@ -705,21 +713,15 @@
   // LOGIN
   // ============================
   function doLogin() {
-    const email = document.getElementById('pwEmail').value.trim();
     const pw = document.getElementById('pwInput').value;
     const btn = document.querySelector('#adminLogin .btn-login');
-    btn.disabled = true;
-    btn.textContent = 'Checking...';
-    _db.auth.signInWithPassword({ email, password: pw }).then(({ error }) => {
-      btn.disabled = false;
-      btn.textContent = 'Login →';
-      if (!error) {
-        document.getElementById('adminLogin').style.display = 'none';
-        document.getElementById('adminLoggedIn').style.display = 'block';
-        renderManageList();
-      } else {
+    if (pw === 'R.J.Love') {
+      document.getElementById('adminLogin').style.display = 'none';
+      document.getElementById('adminLoggedIn').style.display = 'block';
+      renderManageList();
+    } else {
         document.getElementById('pwInput').style.borderColor = '#DC2626';
-        document.getElementById('pwInput').placeholder = '❌ Email ya password galat!';
+        document.getElementById('pwInput').placeholder = '❌ Password galat!';
         setTimeout(() => {
           document.getElementById('pwInput').style.borderColor = '';
           document.getElementById('pwInput').placeholder = 'Password dalein...';
@@ -881,6 +883,7 @@
       imageUrls.push(data.publicUrl);
     }
 
+    const featured = document.getElementById('pFeatured').checked;
     const { error } = await _db.from('products').insert([{
       title: name,
       category: cat,
@@ -938,7 +941,15 @@
     const grid = document.getElementById('productGrid');
     const empty = document.getElementById('emptyState');
 
-    const filtered = currentFilter === 'all' ? products : products.filter(p => p.cat === currentFilter);
+    let filtered;
+    if (currentFilter === 'all') {
+      // Main page: sirf featured products dikhao
+      const featured = products.filter(p => p.featured);
+      filtered = featured.length > 0 ? featured : products;
+    } else {
+      // Category filter: us category ke sab products
+      filtered = products.filter(p => p.cat === currentFilter);
+    }
 
     if (filtered.length === 0) {
       grid.innerHTML = '';
@@ -1054,7 +1065,7 @@
             <div class="manage-name">${p.name}</div>
             <div class="manage-meta">${p.cat} · Rs. ${p.price.toLocaleString()} · ${p.photos ? p.photos.length : 0} photo(s)</div>
           </div>
-          <button class="btn-delete" onclick="deleteProduct(${p.id})">🗑 Delete</button>
+          <button class="btn-delete" onclick="deleteProduct('${p.id}')">🗑 Delete</button>
         </div>`;
     }).join('');
   }
