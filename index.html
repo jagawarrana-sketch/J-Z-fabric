@@ -41,6 +41,7 @@
     .nav-logo { font-size: 1.4rem; font-weight: 800; color: var(--green); letter-spacing: -0.5px; }
     .nav-logo span { color: var(--gold); }
     .nav-links { display: flex; gap: 20px; list-style: none; }
+    @media (max-width: 900px) { .nav-links { display: none !important; } }
     .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: var(--green); }
     .nav-admin { background: var(--green); color: white !important; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem !important; cursor: pointer; border: none; }
@@ -403,6 +404,7 @@
 
     @media (max-width: 768px) {
       .nav-links { display: none !important; }
+      nav ul.nav-links { display: none !important; }
       .nav-logo { font-size: 1.2rem !important; }
       .nav-admin { font-size: 0.72rem !important; padding: 5px 8px !important; }
       .hero { padding: 65px 14px 36px; }
