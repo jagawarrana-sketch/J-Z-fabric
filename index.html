@@ -714,20 +714,18 @@
   // ============================
   function doLogin() {
     const pw = document.getElementById('pwInput').value;
-    const btn = document.querySelector('#adminLogin .btn-login');
     if (pw === 'R.J.Love') {
       document.getElementById('adminLogin').style.display = 'none';
       document.getElementById('adminLoggedIn').style.display = 'block';
       renderManageList();
     } else {
-        document.getElementById('pwInput').style.borderColor = '#DC2626';
-        document.getElementById('pwInput').placeholder = '❌ Password galat!';
-        setTimeout(() => {
-          document.getElementById('pwInput').style.borderColor = '';
-          document.getElementById('pwInput').placeholder = 'Password dalein...';
-        }, 2000);
-      }
-    });
+      document.getElementById('pwInput').style.borderColor = '#DC2626';
+      document.getElementById('pwInput').placeholder = '❌ Password galat!';
+      setTimeout(() => {
+        document.getElementById('pwInput').style.borderColor = '';
+        document.getElementById('pwInput').placeholder = 'Password dalein...';
+      }, 2000);
+    }
   }
 
   // ============================
