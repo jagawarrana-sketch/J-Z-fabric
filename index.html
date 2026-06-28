@@ -402,60 +402,75 @@
     .toast.show { transform: translateX(-50%) translateY(0); }
 
     @media (max-width: 768px) {
-      /* NAV */
-      nav { padding: 12px 16px; }
-      .nav-links { display: none; }
-      .nav-logo { font-size: 1.3rem !important; }
-      .nav-admin { font-size: 0.75rem !important; padding: 5px 10px !important; }
+      /* NAV - links hide karo */
+      nav { padding: 10px 14px; }
+      .nav-links { display: none !important; }
+      .nav-logo { font-size: 1.2rem !important; }
+      .nav-admin { font-size: 0.72rem !important; padding: 5px 8px !important; }
 
       /* HERO */
-      .hero { padding: 70px 16px 40px; }
-      .hero h1 { font-size: 1.8rem; }
-      .hero p { font-size: 0.9rem; }
-      .hero-stats { gap: 16px; flex-wrap: wrap; justify-content: center; }
-      .hero-stat { min-width: 70px; }
-      .hero-stat strong { font-size: 1.3rem; }
+      .hero { padding: 65px 14px 36px; }
+      .hero h1 { font-size: 1.7rem; line-height: 1.2; }
+      .hero p { font-size: 0.88rem; }
+      .hero-stats { gap: 12px; flex-wrap: wrap; justify-content: center; }
+      .hero-stat strong { font-size: 1.2rem; }
       .hero-btns { flex-direction: column; align-items: center; gap: 10px; }
-      .hero-btns a, .hero-btns button { width: 90%; text-align: center; justify-content: center; }
+      .hero-btns a, .hero-btns button { width: 85%; text-align: center; justify-content: center; display: flex; }
 
       /* SECTIONS */
-      .section { padding: 30px 14px; }
-      .why-wrap { padding: 30px 14px; }
+      .section { padding: 28px 12px; }
+      .why-wrap { padding: 28px 12px; }
 
-      /* CATEGORY GRID */
-      .cat-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
-      .cat-card { padding: 14px 10px; }
-      .cat-card .emoji { font-size: 1.6rem; }
-      .cat-card h4 { font-size: 0.85rem; }
-      .cat-card p { font-size: 0.72rem; }
+      /* CATEGORY GRID - 2 columns */
+      .cat-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+      .cat-card { padding: 12px 8px; }
+      .cat-card .emoji { font-size: 1.5rem; }
+      .cat-card h4 { font-size: 0.8rem; }
+      .cat-card p { font-size: 0.7rem; }
 
       /* FILTER BUTTONS */
-      .filter-bar { gap: 6px; flex-wrap: wrap; }
-      .filter-btn { font-size: 0.75rem; padding: 6px 10px; }
+      .filter-bar { gap: 5px; flex-wrap: wrap; padding: 0 4px; }
+      .filter-btn { font-size: 0.72rem; padding: 5px 9px; }
 
-      /* PRODUCT GRID */
-      .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
+      /* PRODUCT GRID - 2 columns */
+      #productGrid, .product-grid { 
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 10px !important; 
+      }
       .product-card { border-radius: 10px; }
-      .product-name { font-size: 0.85rem; }
-      .product-cat { font-size: 0.72rem; }
-      .product-price { font-size: 1rem; }
-      .product-carousel { height: 180px; }
-      .btn-order { font-size: 0.8rem; padding: 8px; }
+      .product-name { font-size: 0.82rem; }
+      .product-cat { font-size: 0.7rem; }
+      .product-desc { font-size: 0.7rem; -webkit-line-clamp: 1; }
+      .product-price { font-size: 0.95rem; }
+      .product-carousel { height: 170px; }
+      .btn-order { font-size: 0.75rem; padding: 7px; }
 
-      /* WHY GRID */
-      .why-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
-      .why-card { padding: 16px 12px; }
+      /* WHY GRID - 2 columns */
+      .why-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
+      .why-card { padding: 14px 10px; }
+      .why-icon { font-size: 1.6rem; }
 
-      /* CONTACT GRID */
+      /* CONTACT */
       .contact-grid { grid-template-columns: 1fr !important; }
 
       /* ADMIN PANEL */
-      .admin-panel { width: 95vw !important; max-height: 90vh; overflow-y: auto; }
-      .admin-header h3 { font-size: 0.95rem; }
+      .admin-panel { 
+        width: 96vw !important; 
+        max-width: 96vw !important;
+        max-height: 88vh !important; 
+        overflow-y: auto !important;
+        margin: 20px auto !important;
+      }
+      .admin-header h3 { font-size: 0.9rem; }
+      .form-group input, .form-group select, .form-group textarea { font-size: 0.9rem; }
 
       /* HEADINGS */
-      h2 { font-size: 1.3rem !important; }
+      h2 { font-size: 1.25rem !important; }
       h3 { font-size: 1rem !important; }
+      
+      /* SECTION LABEL */
+      .section-label { font-size: 0.7rem; }
     }
   </style>
 </head>
