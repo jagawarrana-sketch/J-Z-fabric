@@ -942,7 +942,7 @@
     let filtered;
     if (currentFilter === 'all') {
       // Main page: sirf featured products dikhao
-      const featured = products.filter(p => p.featured);
+      const featured = products.filter(p => p.featured === true);
       filtered = featured.length > 0 ? featured : products;
     } else {
       // Category filter: us category ke sab products
@@ -950,13 +950,12 @@
     }
 
     if (filtered.length === 0) {
-      grid.innerHTML = '';
-      grid.appendChild(empty);
-      empty.style.display = 'block';
+      grid.innerHTML = '<div class="empty-state"><div class="icon">👗</div><p>Is category mein abhi koi product nahi hai</p></div>';
+      if(empty) empty.style.display = 'none';
       return;
     }
 
-    empty.style.display = 'none';
+    if(empty) empty.style.display = 'none';
     grid.innerHTML = '';
 
     filtered.forEach(p => {
